@@ -1,32 +1,43 @@
+import { useEffect, useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
-
-const myStyle = StyleSheet.create({
-    container: {
-        flex: 1,
-        gap: 10,
-        padding: 10
-    },
-    headerText: {
-        textAlign: 'center'
-    }
-})
+import { Link } from 'expo-router';
 
 export default function Home(){
+    const [state, setState] = useState();
+
+    useEffect(() => {
+        console.log(state);
+    }, [state]);
+
+    function handleOnChangeText(text){
+        setState(text);
+    }
+
+    function handleLoginClicked(){
+    }
+
     return (
-        <View style={myStyle.container}>
-            <Text style={myStyle.headerText}>Login your account</Text>
+        <View>
+            <Link href="/react-hook-form">Next Page </Link>
+            <Text>{state}</Text>
+            <Text>Login your account</Text>
             <View>
                 <Text>Email:</Text>
                 <TextInput 
+                    onChangeText={handleOnChangeText}
                     keyboardType="email-address"
-                    placeholder="Enter your Email"/>
+                    placeholder=""/>
             </View>
             <View>
                 <Text>Password:</Text>
                 <TextInput 
+                    secureTextEntry={true}
                     placeholder="Enter your password"/>
             </View>
-            <Button title="Sign In"></Button>
+            <Button 
+                onPress={handleLoginClicked} 
+                title="Sign In">
+            </Button>
         </View>
     )
 }

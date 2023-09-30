@@ -1,43 +1,20 @@
-import { useEffect, useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
-import { Link } from 'expo-router';
+import { View, Button } from "react-native";
+import { useRouter, Link } from "expo-router";
 
 export default function Home(){
-    const [state, setState] = useState();
+    const router = useRouter();
 
-    useEffect(() => {
-        console.log(state);
-    }, [state]);
-
-    function handleOnChangeText(text){
-        setState(text);
-    }
-
-    function handleLoginClicked(){
+    function onSubmit(){
+        router.push("/todo")
     }
 
     return (
         <View>
-            <Link href="/react-hook-form">Next Page </Link>
-            <Text>{state}</Text>
-            <Text>Login your account</Text>
-            <View>
-                <Text>Email:</Text>
-                <TextInput 
-                    onChangeText={handleOnChangeText}
-                    keyboardType="email-address"
-                    placeholder=""/>
-            </View>
-            <View>
-                <Text>Password:</Text>
-                <TextInput 
-                    secureTextEntry={true}
-                    placeholder="Enter your password"/>
-            </View>
             <Button 
-                onPress={handleLoginClicked} 
-                title="Sign In">
+                onPress={onSubmit}
+                title="Go to Todo">
             </Button>
+            <Link href="/todo">Go to Todo</Link>
         </View>
     )
 }
